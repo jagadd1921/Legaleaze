@@ -1,0 +1,32 @@
+div#national-green-tribunal-data-modal     
+  .container-fluid
+    center(style="font-size:20px;") National Green Tribunal
+      form(role='form' id='national-green-tribunal-form', method='post', enctype='multipart/form-data')
+        input#csrf-token-green-tribunal(type='hidden', name='_csrf', value='#{csrfToken}')
+        input#national-green-tribunal-court-name(type='hidden', name='courtName', value='National Green Tribunal')
+        .form-group
+          
+          .col-md-8(style= 'margin-left: 65px')
+            
+              input#national-green-tribunal-case-date.form-control(type='text', data-format="dd-MM-yyyy" name='caseDate', placeholder="Case Date, e.g. DD-MM-YYYY")
+              
+        .form-group
+        
+          .col-md-8(style= 'margin-left: 65px;margin-top: 10px')
+            input#national-green-tribunal-case-number.form-control(type='text', name='caseNumber', placeholder='Case Number', style='width:230px;')             
+            p.help-block
+
+        .form-group
+          
+          .col-md-8(style= 'margin-left: 65px')
+            select#national-green-tribunal-case-type.form-control(size='1' name='caseType' class="selectpicker" )
+              option(value='') --Select Case Type--
+              option(value='Appeal No.') Appeal
+              option(value='Original Application No.') Original Application
+              option(value='Misc Application No.') Misc Application          
+        
+        .row
+         
+          .col-md-8
+            button.btn.btn-warning#btn-national-green-tribunal-submit(type='button' style="margin-left:130px;margin-top:10px")
+              | Submit

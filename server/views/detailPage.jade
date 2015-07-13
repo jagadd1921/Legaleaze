@@ -1,0 +1,616 @@
+doctype html
+html(lang='en')
+  include ./partials/head.part.jade
+  body(style = 'padding-top: 0; background-color: rgb(225,225,225);overflow-x: hidden')
+    .container-fluid
+      .row
+        .col-md-12.no-padding
+          include ./partials/bars/navbar.part.jade
+      .row(style='padding-left:20px; padding-right:20px; margin-top:20px')
+        .col-md-4(style='padding-right:30px; padding-left:30px')
+          .row(style='background-color:white; padding: 3px 7px')
+            if(userCaseDetail != undefined && userCaseDetail[0] != undefined)
+                if(userCaseDetail[0].meeting !=  undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | MEETING DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      |   #{userCaseDetail[0].meeting.description}
+                    h5(style='text-align:left; margin-top:20px; color: grey')
+                      b 
+                        | Location:
+                      |   #{userCaseDetail[0].meeting.location}
+                    h5(style='text-align:left; margin-top:20px; color: grey')
+                      b 
+                        | Meeting Date: 
+                      |   #{userCaseDetail[0].userHearingDate[(userCaseDetail[0].userHearingDate).length-1].hearingDate.toString().split('00')[0]}
+                      button.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].supremeCourt != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].supremeCourt.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | Supreme Court of India
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].supremeCourt.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].delhiHighCourt != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].delhiHighCourt.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | Delhi High Court
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].delhiHighCourt.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].greenTribunal != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].greenTribunal.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | National Green Tribunal
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].greenTribunal.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].telecomDispute != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].telecomDispute.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | National Telecom Dispute
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].telecomDispute.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].consumerDispute != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].consumerDispute.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | National Consuner Dispute
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].consumerDispute.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].bifrCourt != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].bifrCourt.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | BIFR Court
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].bifrCourt.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].karkarDooma != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].karkarDooma.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | District Court Karkardooma
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].karkarDooma.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+                else if(userCaseDetail[0].saket != undefined)
+                  h5(style='text-align:left; color: grey')
+                    b
+                      | CASE DETAILS
+                  .col-md-12
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Brief: 
+                      | #{userCaseDetail[0].saket.caseBrief}
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b
+                        | Location: 
+                      | District Court Saket
+                    h5(style='text-align:left; margin-top:20px; color: grey') 
+                      b 
+                        | Scrapper Hearing Date:   
+                      | #{userCaseDetail[0].saket.scrapperHearingDate[0].hearingDate.toString().split('00')[0]}
+                      if(!(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1]))
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+
+                    if(userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1])
+                      h5(style='text-align:left; margin-top:20px; color: grey') 
+                        b
+                          | User Hearing Date: 
+                        | #{userCaseDetail[0].userHearingDate[userCaseDetail[0].userHearingDate.length-1].hearingDate.toString().split('00')[0]}
+                        button#add-matter.btn.btn-warning.btn-xs(style='font-size: 13px; margin-bottom:10px; border-radius: 0px', type='button', data-target='#EditDateDetail', data-toggle='modal') EDIT 
+          .row(style='background-color:white; margin-top:30px; height: 25em')
+            .col-md-12(style = 'padding: 3px; background-color:white; padding: 0px')
+              h5(style="text-align:left; color: grey; padding: 3px")
+                b
+                  |  TIMELINE
+                .col-md-12(style = 'margin-top: 12px; position: relative')
+                  if(userCaseDetail != undefined && userCaseDetail[0] != undefined)
+                    if(userCaseDetail[0].meeting !=  undefined)
+                      
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Meeting Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                    else if(userCaseDetail[0].supremeCourt !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].supremeCourt.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].supremeCourt.scrapperHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].supremeCourt.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                    else if(userCaseDetail[0].delhiHighCourt !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].delhiHighCourt.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].delhiHighCourt.scrapperHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].delhiHighCourt.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                    else if(userCaseDetail[0].greenTribunal !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].greenTribunal.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].greenTribunal.scrapperHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].greenTribunal.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                    else if(userCaseDetail[0].consumerDispute !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].consumerDispute.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].consumerDispute.scrapperHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].consumerDispute.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                    else if(userCaseDetail[0].telecomDispute !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].telecomDispute.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].telecomDispute.scrapperHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].telecomDispute.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                    else if(userCaseDetail[0].bifrCourt !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].bifrCourt.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 12px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].bifrCourt.scrapperHearingDate[i].cAt.toString().slice(0, 15)}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].bifrCourt.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                       
+                    else if(userCaseDetail[0].karkarDooma !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 10px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().split('GMT')[0]}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].karkarDooma.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 10px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].karkarDooma.scrapperHearingDate[i].cAt.toString().split('GMT')[0]}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].karkarDooma.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                    else if(userCaseDetail[0].saket !=  undefined)
+                      - for(var i = userCaseDetail[0].userHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 10px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].userHearingDate[i].cAt.toString().split('GMT')[0]}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by you to #{userCaseDetail[0].userHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+                      - for(var i = userCaseDetail[0].saket.scrapperHearingDate.length-1; i>=0; i--)
+                        .col-md-3(style = 'padding: 0px; background-color: grey; color: white; text-align: center; font-size: 10px; margin-top: 10px;')
+                          
+                          | #{userCaseDetail[0].saket.scrapperHearingDate[i].cAt.toString().split('GMT')[0]}
+                        .col-md-1(style = 'padding: 0px;')
+                          img(src = '#{cloudpath}/public/images/arrow.png', style = 'height: 52px; width: 250%')
+                        .col-md-7(style = 'left: 37px;background-color: lightgrey; color: black; text-align: center; font-size: 10px; margin-top: 10px')
+                          h6
+                            | Hearing Date changed by Legaleaze to #{userCaseDetail[0].saket.scrapperHearingDate[i].hearingDate.toString().split('00')[0]}
+                        
+        .col-md-4(style=' background-color:white; height: 38em')
+          .row
+            .col-md-12
+              h5(style='text-align:left; color: grey; margin-top:10px;')
+                b
+                  | NOTES
+              form(action='/addComment', method='post', role='form')
+                .col-md-10(style = 'padding-left: 0px; padding-right: 5px')
+                  textarea#comments.form-control.no-paddding(style='margin-bottom:10px', name='comment', placeholder='Enter Comment', rows='4', type='text; border-color: black')
+                  if(userCaseDetail != undefined && userCaseDetail[0] != undefined)
+                    input(type = 'hidden', value = '#{userCaseDetail[0]._id}', name = 'id')
+                  input(type='hidden', name='_csrf', value='#{csrfToken}')
+                .col-md-2(style = 'padding: 0px')
+                  button#commentButton(style = 'height: 94px; background-color: #ed9c28; text-align: center; cursor: pointer; padding: 3px;color: white; border: 0px', type='submit')
+                   | ADD NOTE
+                  
+                  
+      
+          .row(style='margin-top:10px; background-color: white; padding: 0px;')
+              if(userCaseDetail != undefined && userCaseDetail[0] != undefined && userCaseDetail[0].comments != undefined && userCaseDetail[0].comments.length != 0)
+                - for(var i = userCaseDetail[0].comments.length-1; i>=0; i--)
+                  .row(style='margin-top:15px; padding: 5px')
+                    .col-md-12
+                      .col-md-3(style='font-size: 12px; padding-right: 0px; background-color: grey;height: 3em; color: white;')
+                        
+                          | #{userCaseDetail[0].comments[i].cAt.toString().slice(0, 15)}
+                        
+                      .col-md-9(style=' height: 5em; background-color: lightgrey; overflow-y: scroll')
+                        
+                          | #{userCaseDetail[0].comments[i].comment} 
+    
+        .col-md-4(style='padding-right:30px; padding-left:30px')
+          .row(style='background-color:white; height: 38em')
+            .col-md-12
+              h5(style='text-align:left; color: grey')
+                b
+                  | DOCUMENT UPLOAD
+            .col-md-11(style = 'margin-left: 40px; margin-top: 12px')
+              form.full-width(method='post', action='/addDocument',enctype = 'multipart/form-data')
+                select#options(name="docType" class="selectpicker"  style='float:center')
+                  option(value="") Select Document Type
+                  option(value='Type1') Type1
+                  option(value='Type2') Type2
+                  option(value='Type3') Type3
+
+                input(type='hidden', name='_csrf', value='#{csrfToken}')
+                input(type='hidden', name='id', value='#{userCaseDetail[0]._id}')
+                br
+                br
+                input#doc.managementDocument(type='file', name='doc')
+                br
+                button.btn.btn-warning#uploadDoc(style='font-size: 12px; padding: 2px 6px; margin-bottom:10px; border-radius: 0px', type='submit') UPLOAD DOCUMENT
+            .col-md-11
+              #accordion.panel-group(role='tablist', aria-multiselectable='true')
+
+                if(type1 !== undefined)
+                  .panel.panel-default(style = 'border-radius: 0px;')
+                    #headingOne.panel-heading(role='tab' style = 'background-color: lightgrey')
+                      h4.panel-title
+                        a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='false', aria-controls='collapseOne' )
+                          | Type 1 Document
+                    #collapseOne.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingOne')
+                      .panel-body
+                        - for(var j = 0; j< type1.length; j = j+1)
+                          ul
+                            li
+                              a(target='_blank', href='#{type1[j]}')
+                                | #{type1[j]}
+                
+                br
+                if(type2 !== undefined)
+                  .panel.panel-default(style = 'border-radius: 0px')
+                    #headingTwo.panel-heading(role='tab', style = 'background-color: lightgrey')
+                      h4.panel-title
+                        a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                          | Type 2 Document
+                    #collapseTwo.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingTwo')
+                      .panel-body
+                        - for(var i = 0; i< type2.length; i = i+1)
+                          ul
+                            li
+                              a(target='_blank', href='#{type2[i]}')
+                                | #{type2[i]}
+                br
+                if(type3 !== undefined)
+                  .panel.panel-default(style = 'border-radius: 0px')
+                    #headingThree.panel-heading(role='tab', style = 'background-color: lightgrey')
+                      h4.panel-title
+                        a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                          | Type 3 Document
+                    #collapseThree.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingThree')
+                      .panel-body
+                        - for(var k = 0; k< type3.length; k = k+1)
+                          ul
+                            li
+                              a(target='_blank', href='#{type3[k]}')
+                                | #{type3[k]}
+
+             
+                          
+      #EditDateDetail.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-hidden='true') × 
+              if(userCaseDetail[0].meeting !=  undefined)
+                h4#myModalLabel.modal-title
+                  | Edit Meeting Date
+              else 
+                h4#myModalLabel.modal-title
+                  | Edit Hearing Date
+
+            .modal-body
+              center
+                br
+                
+                form(class="form-inline", role="form", method = 'get', action = '/editHearingDate/#{userCaseDetail[0]._id}')
+                  input#nDate(type = 'text',name = 'ndate', placeholder = 'MM/DD/YYYY')
+                  input(type='hidden', name='_csrf', value='#{csrfToken}')
+                  br
+                  br
+                  button.btn.btn-warning#btn-edit-modal-detail(type='input',style=" vertical-align:middle; width:200px")
+                    | Edit Date    
+    #addMatterModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') × 
+            h4#myModalLabel.modal-title
+              | Add A Matter
+          .modal-body
+          div#first-block-modal
+            div#premium-member-block
+              center
+                button.btn.btn-warning#btn-add-premium-member(type='input',style=" vertical-align:middle; width:200px; display:none;")
+                  | Buy a premium membership
+            div#select-court-meeting
+              center
+                select#court-select( name="courtname" class="selectpicker" data-size="250px" style='float:center')
+                  option(value="") --Select Court--
+                  option(value="supreme-court") Supreme Court Of India
+                  option(value="delhi-high-court") Delhi High Court Of India
+                  option(value="national-green-tribunal") National Green Tribunal
+                  option(value="telecom-dispute") Telecom Disputes
+                  option(value="national-consumer-disputes") National Consumer Disputes
+                  option(value="competition-appellate-tribunal") Competition Appellate Tribunal
+                  option(value="company-law-board") Company Law Board
+                br
+                h3(style=" text-align: center; margin-top:20px;") OR
+                br
+                button.btn.btn-warning#btn-meeting-modal(type='input',style=" vertical-align:middle; width:200px")
+                  | Schedule A Meeting
+
+            include ./partials/homemeetingform.part.jade
+            
+            include ./partials/homedelhihighcourt.part.jade
+
+            include ./partials/homegreentribunalcourt.part.jade
+
+            include ./partials/homenationaldisputescourt.part.jade
+
+            include ./partials/hometelecomdisputescourt.part.jade
+
+            include ./partials/homecompanylawcourt.part.jade
+
+            include ./partials/homecompetitionappellate.part.jade
+
+            include ./partials/homesupremecourt.part.jade
+
+
+
+          div#second-block-progress-bar
+            div.progress
+              div.progress-bar.progress-bar-warning.progress-bar-striped(role='progressbar', aria-valuenow='5', aria-valuemin='0', aria-valuemax='100', style='width: 5%')
+                span.sr-only 20% Complete (warning)
+          include ./partials/finalcasedetailform.part.jade
+          include ./partials/finalcompanylaw.part.jade
+
+          div#error-show-block(style="display:none;")
+           | Error: Please enter correct relevent details
+          div#already-added(style="display:none")
+           | Error: You have already added this case.
+          
+          .row-fluid
+            .span6.offset1
+              div.row
+                div.span12
+                  div.progress.progress-striped.active.hide(style='margin-left:50px;; margin-right:50px;; margin-top:20px')
+                    div.bar(style='width: 0%')
+          div.content-detail
+            div.inside-content(style='visibility:hidden')
+              | &nbsp table content             
+          .modal-footer
+            button.btn.btn-default#btn-back-modal(type='button' style="float:left; display:none;") Back
+            button.btn.btn-default#btn-close-modal(type='button', data-dismiss='modal') Close
+            
+      
+                    
