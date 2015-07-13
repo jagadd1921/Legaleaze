@@ -150,7 +150,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function(req, res, next) {  
-  res.locals.cloudpath = 'http://daa2rm9s3wkfy.cloudfront.net';
+  res.locals.cloudpath = 'https://daa2rm9s3wkfy.cloudfront.net';
   res.locals.user = req.user;
   //res.locals.csrfToken = req.csrfToken();
   res.locals.secrets = mvc.config.secrets; // Not sure if this is good...
