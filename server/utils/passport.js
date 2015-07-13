@@ -28,7 +28,7 @@ passport.deserializeUser(function(id, done) {
 
 
 exports.cloudpath = function(req, res, next) {
-  res.cloudpath = 'http://daa2rm9s3wkfy.cloudfront.net';
+  res.cloudpath = 'https://daa2rm9s3wkfy.cloudfront.net';
   next();
 };
 // =============================================================================
